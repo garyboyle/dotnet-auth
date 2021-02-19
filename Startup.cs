@@ -41,6 +41,8 @@ namespace dotnet_auth
             services.AddAuthentication()
                 .AddIdentityServerJwt();
             services.AddControllersWithViews();
+
+            // QUESTION: Is it this that adds the `Identity\Account\*` routes?
             services.AddRazorPages();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
