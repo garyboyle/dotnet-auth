@@ -35,8 +35,10 @@ namespace dotnet_auth
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            // QUESTION: Is this the bit that hooks in our users, which are stored in the db, to the
             services.AddIdentityServer()
-                .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
+                .AddApiAuthorization<ApplicationUser, ApplicationDbContext>()
+                .AddInMemoryClients(Configuration.GetSection("IdentityServer:Clients"));
 
             services.AddAuthentication()
                 .AddIdentityServerJwt();
